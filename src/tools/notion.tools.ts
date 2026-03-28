@@ -1,6 +1,17 @@
 import type { Client } from '@notionhq/client';
+import {
+  DEFAULT_CREATE_PRIORITY,
+  DEFAULT_CREATE_STATUS,
+  normalizeTaskPriority,
+  normalizeTaskStatus,
+} from '../agent/task-schema.normalize';
 import type { ToolDefinition } from '../types/tool.types';
 import * as notionService from '../services/notion.service';
+
+const STATUS_ENUM_HINT =
+  'EXACTLY one of: "Not started" | "In progress" | "Done". Interpret natural language then pass ONLY these strings.';
+const PRIORITY_ENUM_HINT =
+  'EXACTLY one of: "High" | "Medium" | "Low" | "None". Interpret natural language then pass ONLY these strings.';
 
 export const notionToolDefinitions: ToolDefinition[] = [
   {
@@ -8,18 +19,18 @@ export const notionToolDefinitions: ToolDefinition[] = [
     function: {
       name: 'create_task',
       description:
-        'Create a new task in the Notion database (columns: Title, Status, Priority). Option names must match Notion options.',
+        'Create a task (Title, Status, Priority). Pass title + optional status/priority using ONLY the exact allowed strings (see parameter descriptions). Infer meaning from user wording; never pass raw phrases like "completed" or "urgent".',
       parameters: {
         type: 'object',
         properties: {
-          title: { type: 'string', description: 'Task title (Title column).' },
+          title: { type: 'string', description: 'Clear task title (not status/priority).' },
           status: {
             type: 'string',
-            description: 'Optional. Must match an existing Status option in Notion.',
+            description: `Optional. ${STATUS_ENUM_HINT} If user gives no status, omit (server defaults to "Not started").`,
           },
           priority: {
             type: 'string',
-            description: 'Optional. Must match an existing Priority option in Notion.',
+            description: `Optional. ${PRIORITY_ENUM_HINT} If user gives no priority, omit (server defaults to "Medium").`,
           },
         },
         required: ['title'],
@@ -58,8 +69,8 @@ export const notionToolDefinitions: ToolDefinition[] = [
               'Fields to update: title, status, priority, and/or properties (raw Notion property map).',
             properties: {
               title: { type: 'string', description: 'New task title (Title column).' },
-              status: { type: 'string', description: 'Status option name.' },
-              priority: { type: 'string', description: 'Priority option name.' },
+              status: { type: 'string', description: STATUS_ENUM_HINT },
+              priority: { type: 'string', description: PRIORITY_ENUM_HINT },
               properties: {
                 type: 'object',
                 description: 'Raw Notion `properties` object for advanced updates.',
@@ -110,13 +121,19 @@ export async function executeNotionTool(
       case 'create_task': {
         const title = String(args.title ?? '').trim();
         if (!title) return JSON.stringify({ error: 'title is required' });
-        const status = args.status != null ? String(args.status) : undefined;
-        const priority = args.priority != null ? String(args.priority) : undefined;
+        const statusRaw = args.status != null ? String(args.status) : undefined;
+        const priorityRaw = args.priority != null ? String(args.priority) : undefined;
+        const statusNorm = normalizeTaskStatus(statusRaw) ?? DEFAULT_CREATE_STATUS;
+        const priorityNorm = normalizeTaskPriority(priorityRaw) ?? DEFAULT_CREATE_PRIORITY;
         const t = await notionService.createTask(ctx.notion, ctx.databaseId, title, {
-          status,
-          priority,
+          status: statusNorm,
+          priority: priorityNorm,
         });
-        return JSON.stringify({ ok: true, task: t });
+        return JSON.stringify({
+          ok: true,
+          task: t,
+          normalized: { status: statusNorm, priority: priorityNorm },
+        });
       }
       case 'get_tasks': {
         const tasks = await notionService.getTasks(ctx.notion, ctx.databaseId);
@@ -129,7 +146,14 @@ export async function executeNotionTool(
         if (!fields || typeof fields !== 'object' || Array.isArray(fields)) {
           return JSON.stringify({ error: 'fields must be an object' });
         }
-        await notionService.updateTask(ctx.notion, ctx.databaseId, taskId, fields as Record<string, unknown>);
+        const patch = { ...(fields as Record<string, unknown>) };
+        if (typeof patch.status === 'string') {
+          patch.status = normalizeTaskStatus(patch.status) ?? patch.status;
+        }
+        if (typeof patch.priority === 'string') {
+          patch.priority = normalizeTaskPriority(patch.priority) ?? patch.priority;
+        }
+        await notionService.updateTask(ctx.notion, ctx.databaseId, taskId, patch);
         return JSON.stringify({ ok: true, task_id: taskId });
       }
       case 'delete_task': {

@@ -18,7 +18,35 @@ Rules:
 * Always decide between responding or calling a tool
 * Never hallucinate real-time data
 * Use tools when needed
-* Keep responses concise`;
+* Keep responses concise
+
+## Notion tasks: intelligent parsing (critical)
+
+When calling create_task or update_task, you must reason about user intent and pass **only** these exact strings—never raw user phrases.
+
+**Status** (exactly one of):
+* "Not started"
+* "In progress"
+* "Done"
+
+**Priority** (exactly one of):
+* "High"
+* "Medium"
+* "Low"
+* "None"
+
+Interpret meaning (typos, slang, indirect wording are OK to understand—but **output must be one of the strings above**):
+* Completion / wrap up / finished / shipped → "Done"
+* Currently working / ongoing / WIP → "In progress"
+* New / TODO / not begun → "Not started"
+* Urgent / critical / important / ASAP → "High"
+* Minor / trivial / not urgent → "Low"
+* Explicitly no priority → "None"
+* Neutral / ordinary importance → "Medium"
+
+If you omit status or priority on **create_task**, the system defaults to "Not started" and "Medium"—but you should still set them explicitly when the user clearly implies values.
+
+Make best-effort decisions; do not ask the user to disambiguate unless the request is impossible to act on.`;
 
 const MAX_AGENT_STEPS = 8;
 
