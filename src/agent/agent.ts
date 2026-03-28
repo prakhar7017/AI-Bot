@@ -1,5 +1,6 @@
 import type { ChatMessage, ToolCall, ToolDefinition } from '../types/tool.types';
-import { sendMessage } from '../services/gemini.service';
+import { getLLMProvider } from '../factory/llm.factory';
+import { llmResponseToAssistantMessage } from '../providers/llm-response.adapter';
 import { notionToolDefinitions, executeNotionTool, type NotionToolsContext } from '../tools/notion.tools';
 import { searchToolDefinitions, executeSearchTool } from '../tools/search.tools';
 import { appendMemory, loadMemory, memoryToChatSnippets } from '../services/memory.service';
@@ -24,8 +25,6 @@ const MAX_AGENT_STEPS = 8;
 const allTools: ToolDefinition[] = [...notionToolDefinitions, ...searchToolDefinitions];
 
 export interface AgentDeps {
-  geminiApiKey: string;
-  geminiModel: string;
   notionCtx: NotionToolsContext;
   searchApiKey: string;
   memoryPath: string;
@@ -84,6 +83,8 @@ export async function runAgent(userId: string, userText: string, deps: AgentDeps
 
   await appendMemory(deps.memoryPath, userId, 'user', userText);
 
+  const llm = getLLMProvider();
+
   let step = 0;
   let lastError: string | null = null;
 
@@ -91,12 +92,14 @@ export async function runAgent(userId: string, userText: string, deps: AgentDeps
     step += 1;
     let assistantMsg;
     try {
-      assistantMsg = await sendMessage(messages, allTools, deps.geminiApiKey, {
-        model: deps.geminiModel,
+      const raw = await llm.sendMessage(messages, allTools, {
+        temperature: 0.3,
+        maxTokens: 2048,
       });
+      assistantMsg = llmResponseToAssistantMessage(raw);
     } catch (e) {
       lastError = e instanceof Error ? e.message : String(e);
-      console.error('[agent] Gemini error:', lastError);
+      console.error('[agent] LLM error:', lastError);
       const safe = 'I ran into a problem reaching the AI service. Please try again in a moment.';
       await appendMemory(deps.memoryPath, userId, 'assistant', safe);
       return safe;

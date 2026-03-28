@@ -1,7 +1,7 @@
 {
   "name": "ai-runtime-agent",
   "version": "1.0.0",
-  "description": "Discord AI agent with Gemini, Notion, and web search (tool-calling)",
+  "description": "Discord AI agent with pluggable LLMs (Gemini/Groq/OpenAI), Notion, and web search",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",

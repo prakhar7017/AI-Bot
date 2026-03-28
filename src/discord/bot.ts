@@ -83,8 +83,6 @@ export async function startDiscordBot(): Promise<void> {
       }
 
       const reply = await runAgent(userKey, text, {
-        geminiApiKey: env.geminiApiKey,
-        geminiModel: env.geminiModel,
         notionCtx,
         searchApiKey: env.searchApiKey,
         memoryPath: env.memoryPath,

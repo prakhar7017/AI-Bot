@@ -11,21 +11,8 @@ import {
   type Part,
   type Tool,
 } from '@google/generative-ai';
-import type { ChatMessage, GrokChoiceMessage, ToolDefinition } from '../types/tool.types';
-
-const DEFAULT_MODEL = 'gemini-1.5-flash';
-
-export interface SendMessageOptions {
-  model?: string;
-  temperature?: number;
-  maxTokens?: number;
-}
-
-/** Normalized LLM outcome (Gemini-native); maps to {@link GrokChoiceMessage} for the agent loop. */
-export type GeminiModelResult =
-  | { type: 'text'; content: string }
-  | { type: 'tool_call'; name: string; arguments: Record<string, unknown> }
-  | { type: 'tool_calls'; calls: Array<{ name: string; arguments: Record<string, unknown> }> };
+import type { ChatMessage, ToolDefinition } from '../types/tool.types';
+import type { LLMProvider, LLMResponse, LLMSendOptions, LlmProviderId } from '../types/llm.types';
 
 function normalizeGeminiError(err: unknown): string {
   if (err instanceof GoogleGenerativeAIFetchError) {
@@ -35,6 +22,7 @@ function normalizeGeminiError(err: unknown): string {
     if (status === 400 || status === 401 || status === 403) {
       return `Invalid API key or request (${status ?? ''}). ${base}`;
     }
+    if (status && status >= 500) return `Server error (${status}): ${base}`;
     return base;
   }
   if (err instanceof GoogleGenerativeAIResponseError) {
@@ -44,7 +32,6 @@ function normalizeGeminiError(err: unknown): string {
   return String(err);
 }
 
-/** JSON-schema-like fragment (OpenAI tool style) → Gemini {@link FunctionDeclarationSchema}. */
 function openApiStyleToGeminiSchema(
   spec: Record<string, unknown>,
   path: string
@@ -146,12 +133,11 @@ function toolsToGeminiDeclarations(tools: ToolDefinition[]): FunctionDeclaration
       fn.parameters as unknown as Record<string, unknown>,
       fn.name
     );
-    const decl: FunctionDeclaration = {
+    return {
       name: fn.name,
       description: fn.description,
       parameters: params,
     };
-    return decl;
   });
 }
 
@@ -254,45 +240,7 @@ function chatMessagesToGeminiContents(messages: ChatMessage[]): Content[] {
   return out;
 }
 
-function functionCallsToAssistantMessage(calls: FunctionCall[]): GrokChoiceMessage {
-  const tool_calls = calls.map((fc, i) => ({
-    id: `gemini_${Date.now()}_${i}_${fc.name}`,
-    type: 'function' as const,
-    function: {
-      name: fc.name,
-      arguments: JSON.stringify(fc.args ?? {}),
-    },
-  }));
-  return {
-    role: 'assistant',
-    content: null,
-    tool_calls,
-    refusal: null,
-  };
-}
-
-/**
- * Map Gemini outcome to the same assistant shape the Grok client used (OpenAI-style tool_calls + content).
- */
-export function toAssistantMessage(result: GeminiModelResult): GrokChoiceMessage {
-  if (result.type === 'text') {
-    return {
-      role: 'assistant',
-      content: result.content,
-      refusal: null,
-    };
-  }
-  if (result.type === 'tool_call') {
-    return functionCallsToAssistantMessage([
-      { name: result.name, args: result.arguments },
-    ]);
-  }
-  return functionCallsToAssistantMessage(
-    result.calls.map((c) => ({ name: c.name, args: c.arguments }))
-  );
-}
-
-function parseModelResultFromResponse(parts: Part[] | undefined): GeminiModelResult {
+function parsePartsToLLMResponse(parts: Part[] | undefined): LLMResponse {
   const list = parts ?? [];
   const calls: FunctionCall[] = [];
   const textParts: string[] = [];
@@ -325,60 +273,62 @@ function parseModelResultFromResponse(parts: Part[] | undefined): GeminiModelRes
   return { type: 'text', content: textParts.join('').trim() || '' };
 }
 
-/**
- * Send messages and optional tools to Gemini; returns OpenAI-compatible assistant message for the agent loop.
- */
-export async function sendMessage(
-  messages: ChatMessage[],
-  tools: ToolDefinition[] | undefined,
-  apiKey: string,
-  options: SendMessageOptions = {}
-): Promise<GrokChoiceMessage> {
-  const modelName = options.model ?? DEFAULT_MODEL;
-  const genAI = new GoogleGenerativeAI(apiKey);
-  const declarations = tools?.length ? toolsToGeminiDeclarations(tools) : [];
-  const toolPayload: Tool[] | undefined =
-    declarations.length > 0 ? [{ functionDeclarations: declarations }] : undefined;
+export class GeminiProvider implements LLMProvider {
+  readonly id: LlmProviderId = 'gemini';
 
-  const model = genAI.getGenerativeModel({
-    model: modelName,
-    tools: toolPayload,
-    toolConfig: toolPayload
-      ? {
-          functionCallingConfig: { mode: FunctionCallingMode.AUTO },
-        }
-      : undefined,
-  });
+  constructor(
+    private readonly apiKey: string,
+    private readonly defaultModel: string
+  ) {}
 
-  const contents = chatMessagesToGeminiContents(messages);
+  async sendMessage(
+    messages: ChatMessage[],
+    tools: ToolDefinition[] | undefined,
+    options?: LLMSendOptions
+  ): Promise<LLMResponse> {
+    const modelName = options?.model ?? this.defaultModel;
+    const genAI = new GoogleGenerativeAI(this.apiKey);
+    const declarations = tools?.length ? toolsToGeminiDeclarations(tools) : [];
+    const toolPayload: Tool[] | undefined =
+      declarations.length > 0 ? [{ functionDeclarations: declarations }] : undefined;
 
-  try {
-    const result = await model.generateContent({
-      contents,
-      generationConfig: {
-        temperature: options.temperature ?? 0.3,
-        maxOutputTokens: options.maxTokens ?? 2048,
-      },
+    const model = genAI.getGenerativeModel({
+      model: modelName,
+      tools: toolPayload,
+      toolConfig: toolPayload
+        ? {
+            functionCallingConfig: { mode: FunctionCallingMode.AUTO },
+          }
+        : undefined,
     });
 
-    const raw = result.response as import('@google/generative-ai').GenerateContentResponse & {
-      promptFeedback?: import('@google/generative-ai').PromptFeedback;
-    };
-    if (raw.promptFeedback?.blockReason) {
-      const reason = raw.promptFeedback.blockReason;
-      const msg = raw.promptFeedback.blockReasonMessage ?? String(reason);
-      throw new Error(`Prompt blocked: ${msg}`);
-    }
+    const contents = chatMessagesToGeminiContents(messages);
 
-    const cands = raw.candidates;
-    if (!cands?.length) {
-      throw new Error('Gemini returned no candidates');
-    }
+    try {
+      const result = await model.generateContent({
+        contents,
+        generationConfig: {
+          temperature: options?.temperature ?? 0.3,
+          maxOutputTokens: options?.maxTokens ?? 2048,
+        },
+      });
 
-    const parts = cands[0].content?.parts;
-    const parsed = parseModelResultFromResponse(parts);
-    return toAssistantMessage(parsed);
-  } catch (err) {
-    throw new Error(`Gemini: ${normalizeGeminiError(err)}`);
+      const raw = result.response as import('@google/generative-ai').GenerateContentResponse & {
+        promptFeedback?: import('@google/generative-ai').PromptFeedback;
+      };
+      if (raw.promptFeedback?.blockReason) {
+        const msg = raw.promptFeedback.blockReasonMessage ?? String(raw.promptFeedback.blockReason);
+        throw new Error(`Prompt blocked: ${msg}`);
+      }
+
+      const cands = raw.candidates;
+      if (!cands?.length) {
+        throw new Error('Gemini returned no candidates');
+      }
+
+      return parsePartsToLLMResponse(cands[0].content?.parts);
+    } catch (err) {
+      throw new Error(`Gemini: ${normalizeGeminiError(err)}`);
+    }
   }
 }
