@@ -1,0 +1,27 @@
+{
+  "name": "ai-runtime-agent",
+  "version": "1.0.0",
+  "description": "Discord AI agent with Gemini, Notion, and web search (tool-calling)",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "@notionhq/client": "^2.2.15",
+    "axios": "^1.7.9",
+    "discord.js": "^14.16.3",
+    "dotenv": "^16.4.7"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  }
+}
