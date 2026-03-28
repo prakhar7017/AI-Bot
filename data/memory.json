@@ -1,0 +1,1241 @@
+{
+  "version": 2,
+  "channels": {
+    "__legacy__": [
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "hello bot",
+        "timestamp": "2026-03-28T02:10:11.113Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "assistant",
+        "content": "I ran into a problem reaching the AI service. Please try again in a moment.",
+        "timestamp": "2026-03-28T02:10:11.600Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "hello bot",
+        "timestamp": "2026-03-28T02:16:38.619Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "assistant",
+        "content": "I ran into a problem reaching the AI service. Please try again in a moment.",
+        "timestamp": "2026-03-28T02:16:38.920Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "hello Bot",
+        "timestamp": "2026-03-28T02:32:01.927Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "assistant",
+        "content": "I ran into a problem reaching the AI service. Please try again in a moment.",
+        "timestamp": "2026-03-28T02:32:02.469Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "hello bot",
+        "timestamp": "2026-03-28T02:33:19.993Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "assistant",
+        "content": "I ran into a problem reaching the AI service. Please try again in a moment.",
+        "timestamp": "2026-03-28T02:33:20.377Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "hello bot",
+        "timestamp": "2026-03-28T02:35:47.340Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "assistant",
+        "content": "Hello! How can I help you today?",
+        "timestamp": "2026-03-28T02:35:48.978Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "Add task: Testing 1",
+        "timestamp": "2026-03-28T02:36:45.562Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "assistant",
+        "content": "Task 'Testing 1' added.",
+        "timestamp": "2026-03-28T02:36:49.959Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "Show all tasks",
+        "timestamp": "2026-03-28T02:38:14.812Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "assistant",
+        "content": "Here are your tasks:\n* Testing 1 (Status: Not started, Priority: None)",
+        "timestamp": "2026-03-28T02:38:18.928Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "Mark task Testing 1  as completed",
+        "timestamp": "2026-03-28T02:39:08.288Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "assistant",
+        "content": "I'm sorry, I encountered an error when trying to update the task. The status option \"Completed\" does not seem to exist. Please provide a valid status option.",
+        "timestamp": "2026-03-28T02:39:17.169Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "Mark task Testing 1  as Done",
+        "timestamp": "2026-03-28T02:41:14.481Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "assistant",
+        "content": "Task 'Testing 1' marked as Done.",
+        "timestamp": "2026-03-28T02:41:23.064Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "Delete task Testing 1",
+        "timestamp": "2026-03-28T02:42:04.213Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "assistant",
+        "content": "Task 'Testing 1' deleted.",
+        "timestamp": "2026-03-28T02:42:11.327Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "What is AUD to USD?",
+        "timestamp": "2026-03-28T02:43:07.713Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "assistant",
+        "content": "The current AUD to USD exchange rate is approximately 0.695. This rate fluctuates based on market conditions.",
+        "timestamp": "2026-03-28T02:43:14.025Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "What is USD to INR?",
+        "timestamp": "2026-03-28T02:44:00.615Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "assistant",
+        "content": "As of March 28, 2026, 1 USD is approximately 94.86 INR. This rate can fluctuate based on market conditions.",
+        "timestamp": "2026-03-28T02:44:06.871Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "Hey bot, create a task to review content 31 with high priority",
+        "timestamp": "2026-03-28T02:47:44.856Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "assistant",
+        "content": "Task 'review content 31' created with High priority.",
+        "timestamp": "2026-03-28T02:47:48.822Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "Delete task review content 31",
+        "timestamp": "2026-03-28T02:54:51.302Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "assistant",
+        "content": "I ran into a problem reaching the AI service. Please try again in a moment.",
+        "timestamp": "2026-03-28T02:54:54.322Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "delete task review content 31",
+        "timestamp": "2026-03-28T03:14:55.335Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "assistant",
+        "content": "Task **“review content 31”** has been deleted.",
+        "timestamp": "2026-03-28T03:14:58.018Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "Hi bot, please create a task Reading Book with status as In progress and priority as High",
+        "timestamp": "2026-03-28T03:25:45.271Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "assistant",
+        "content": "✅ Task **“Reading Book”** created with status **In progress** and priority **High**.",
+        "timestamp": "2026-03-28T03:25:50.126Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "Mark task Reading Book  as completed",
+        "timestamp": "2026-03-28T03:30:57.546Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "assistant",
+        "content": "✅ Task **“Reading Book”** marked as **Done**.",
+        "timestamp": "2026-03-28T03:31:03.115Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "Please add task Cooking with priority as going on",
+        "timestamp": "2026-03-28T03:34:02.216Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "assistant",
+        "content": "✅ Task **“Cooking”** created with status **In progress** and priority **Medium**.",
+        "timestamp": "2026-03-28T03:34:05.297Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "update priority to low for cooking task",
+        "timestamp": "2026-03-28T03:34:45.110Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "assistant",
+        "content": "I need the Notion page ID for the “Cooking” task to update its priority. Could you share that ID?",
+        "timestamp": "2026-03-28T03:34:46.080Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "mark priority to low for cooking task",
+        "timestamp": "2026-03-28T03:35:35.554Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "assistant",
+        "content": "I need the Notion page ID for the “Cooking” task to update its priority. Could you share that ID?",
+        "timestamp": "2026-03-28T03:35:36.968Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "mark priority to low for Cooking task",
+        "timestamp": "2026-03-28T03:36:05.388Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "assistant",
+        "content": "✅ Priority for **“Cooking”** updated to **Low**.",
+        "timestamp": "2026-03-28T03:36:09.478Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "list all tasks",
+        "timestamp": "2026-03-28T03:36:22.212Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "assistant",
+        "content": "Here are all current tasks:\n\n| Title        | Status       | Priority |\n|--------------|--------------|----------|\n| Reading Book | Done         | High     |\n| Cooking      | In progress  | Low      |\n\n✅ All tasks listed.",
+        "timestamp": "2026-03-28T03:36:24.411Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "Tell me the current rate of 1USD in INR",
+        "timestamp": "2026-03-28T03:42:08.895Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "assistant",
+        "content": "The current exchange rate is about **1 USD ≈ 94.86 INR** (mid‑market).  \nSources: Google Featured Answer, XE, Investing.com, BookMyForex, Wise, Revolut.",
+        "timestamp": "2026-03-28T03:42:11.993Z"
+      }
+    ],
+    "1487272546176077884": [
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "please create a task Hospital",
+        "timestamp": "2026-03-28T04:06:06.063Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "✅ Task “Hospital” created (Status: Not started, Priority: Medium).",
+        "timestamp": "2026-03-28T04:06:09.401Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "update previous task priority to low and status as completed",
+        "timestamp": "2026-03-28T04:07:02.741Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "✅ Task “Hospital” updated (Status: Done, Priority: Low).",
+        "timestamp": "2026-03-28T04:07:05.178Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "delete previous task",
+        "timestamp": "2026-03-28T04:13:31.565Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "✅ Task “Hospital” archived.",
+        "timestamp": "2026-03-28T04:13:35.328Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "updated about USA and iran war",
+        "timestamp": "2026-03-28T04:14:21.878Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "Here’s a quick snapshot of the latest on the U.S.–Iran tensions (as of 28 Mar 2026):\n\n| Item | Status |\n|------|--------|\n| **U.S. strikes** | U.S. forces carried out a strike that injured 10 service members; Iran has responded with threats of retaliation. |\n| **Diplomatic talks** | Both sides are in ongoing talks, but no concrete agreement has been reached. |\n| **Regional fallout** | Neighboring Gulf states are on high alert; the Strait of Hormuz remains a flashpoint. |\n| **Humanitarian impact** | Reports indicate over 1,500 civilians have been killed in the broader conflict, with many displaced. |\n\n**Key take‑away:** Tensions remain high, with sporadic military actions and diplomatic back‑and‑forth. The situation is fluid, so keep an eye on official briefings for any new developments.",
+        "timestamp": "2026-03-28T04:14:28.260Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "plese add task Shoping and driving",
+        "timestamp": "2026-03-28T04:22:12.204Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "✅ Task “Shoping and driving” created (Status: Not started, Priority: Medium).",
+        "timestamp": "2026-03-28T04:22:16.316Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "split last task into two shoping and driving",
+        "timestamp": "2026-03-28T04:22:52.178Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "✅ Split task: archived “Shoping and driving”, created “Shoping” and “Driving”.",
+        "timestamp": "2026-03-28T04:22:59.537Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "what is priority of last two tasks",
+        "timestamp": "2026-03-28T04:44:26.828Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "The last two tasks (“Shoping” and “Driving”) both have a **Medium** priority.",
+        "timestamp": "2026-03-28T04:44:29.073Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "last 3",
+        "timestamp": "2026-03-28T04:44:37.509Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "The last three tasks (in order of creation) and their priorities are:\n\n| Task          | Priority |\n|---------------|----------|\n| Reading Book  | High     |\n| Shoping       | Medium   |\n| Driving       | Medium   |",
+        "timestamp": "2026-03-28T04:44:40.373Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "create task studying with status not started and priority as high",
+        "timestamp": "2026-03-28T04:47:02.861Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "✅ Task “studying” created (Status: Not started, Priority: High).",
+        "timestamp": "2026-03-28T04:47:06.645Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "last 3 task",
+        "timestamp": "2026-03-28T04:47:15.936Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "Here are the most recent three tasks (in order of creation) and their priorities:\n\n| Task          | Priority |\n|---------------|----------|\n| Reading Book  | High     |\n| Driving       | Medium   |\n| Cooking       | Low      |",
+        "timestamp": "2026-03-28T04:47:18.190Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "add task buying",
+        "timestamp": "2026-03-28T04:50:19.206Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "✅ Task “buying” created (Status: Not started, Priority: Medium).",
+        "timestamp": "2026-03-28T04:50:22.664Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "crete task sleeping",
+        "timestamp": "2026-03-28T04:54:20.147Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "✅ Task “sleeping” created (Status: Not started, Priority: Medium).",
+        "timestamp": "2026-03-28T04:54:24.261Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "list all task",
+        "timestamp": "2026-03-28T04:54:34.320Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "Here’s the current list of all tasks in the database:\n\n| Task          | Status      | Priority | Created |\n|---------------|-------------|----------|---------|\n| Sleeping      | Not started | Medium   | 04:54 AM |\n| Buying        | Not started | Medium   | 04:50 AM |\n| Studying      | Not started | High     | 04:47 AM |\n| Shoping       | Not started | Medium   | 04:22 AM |\n| Driving       | Not started | Medium   | 04:22 AM |\n| Cooking       | In progress | Low      | 03:34 AM |\n| Reading Book  | Done        | High     | 03:25 AM |\n\nLet me know if you’d like to modify or add anything!",
+        "timestamp": "2026-03-28T04:54:37.830Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "show all task",
+        "timestamp": "2026-03-28T04:58:39.561Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "Here’s the current list of all tasks in the database:\n\n| Task          | Status      | Priority | Created |\n|---------------|-------------|----------|---------|\n| Sleeping      | Not started | Medium   | 04:54 AM |\n| Buying        | Not started | Medium   | 04:50 AM |\n| Studying      | Not started | High     | 04:47 AM |\n| Shoping       | Not started | Medium   | 04:22 AM |\n| Driving       | Not started | Medium   | 04:22 AM |\n| Cooking       | In progress | Low      | 03:34 AM |\n| Reading Book  | Done        | High     | 03:25 AM |\n\nLet me know if you’d like to modify or add anything!",
+        "timestamp": "2026-03-28T04:58:43.018Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "last 3 task",
+        "timestamp": "2026-03-28T04:59:14.184Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "Here are the most recent three tasks (by creation time):\n\n| Task      | Status      | Priority |\n|-----------|-------------|----------|\n| Sleeping  | Not started | Medium   |\n| Buying    | Not started | Medium   |\n| Studying  | Not started | High     |\n\nLet me know if you’d like to modify any of them!",
+        "timestamp": "2026-03-28T04:59:16.295Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "delete the previous task",
+        "timestamp": "2026-03-28T04:59:38.239Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "✅ Task “Studying” archived.",
+        "timestamp": "2026-03-28T04:59:41.333Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "create a task running",
+        "timestamp": "2026-03-28T05:00:35.994Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "✅ Task “running” created (Status: Not started, Priority: Medium).",
+        "timestamp": "2026-03-28T05:00:40.568Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "update prevois task with status done",
+        "timestamp": "2026-03-28T05:00:57.618Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "✅ Task “running” updated (Status: Done).",
+        "timestamp": "2026-03-28T05:01:00.173Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "which is oldest task",
+        "timestamp": "2026-03-28T05:02:28.617Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "The oldest task in the database is **“Reading Book”** (created at 03:25 AM, status Done, priority High).",
+        "timestamp": "2026-03-28T05:02:33.825Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "current weather in newyork",
+        "timestamp": "2026-03-28T05:02:59.884Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "**New York (as of 2026‑03‑28 01:00 UTC)**  \n- Temperature: **42 °F (5.6 °C)**  \n- Condition: **Overcast**  \n- Wind: **North at ~13 mph**  \n\nSource: WeatherAPI (current data)【commentary:1】.",
+        "timestamp": "2026-03-28T05:03:05.063Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "hello bot",
+        "timestamp": "2026-03-28T05:12:21.018Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "Hey there! 👋 How can I help you today?",
+        "timestamp": "2026-03-28T05:12:23.396Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "what was first task i created",
+        "timestamp": "2026-03-28T05:13:33.633Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "Your very first task was **“Hospital”**, created at 04:06 AM.",
+        "timestamp": "2026-03-28T05:13:35.769Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "last task i created",
+        "timestamp": "2026-03-28T05:14:40.336Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "The most recent task you created is **“running”** (created at 05:00 AM, status Done).",
+        "timestamp": "2026-03-28T05:14:43.288Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "hello",
+        "timestamp": "2026-03-28T05:27:23.061Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "Hey there! 👋 How can I help you today?",
+        "timestamp": "2026-03-28T05:27:26.356Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "userLabel": "prakharmaheshwari_7017",
+        "role": "user",
+        "content": "what is current time",
+        "timestamp": "2026-03-28T05:55:39.655Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "userLabel": "AI Runtime Bot",
+        "role": "assistant",
+        "content": "I ran into a problem reaching the AI service. Please try again in a moment.",
+        "timestamp": "2026-03-28T05:55:45.381Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "userLabel": "prakharmaheshwari_7017",
+        "role": "user",
+        "content": "can you tell me time",
+        "timestamp": "2026-03-28T05:56:23.271Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "userLabel": "AI Runtime Bot",
+        "role": "assistant",
+        "content": "I ran into a problem reaching the AI service. Please try again in a moment.",
+        "timestamp": "2026-03-28T05:56:29.022Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "userLabel": "prakharmaheshwari_7017",
+        "role": "user",
+        "content": "can you tell me time",
+        "timestamp": "2026-03-28T05:57:13.208Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "userLabel": "AI Runtime Bot",
+        "role": "assistant",
+        "content": "I ran into a problem reaching the AI service. Please try again in a moment.",
+        "timestamp": "2026-03-28T05:57:19.300Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "userLabel": "prakharmaheshwari_7017",
+        "role": "user",
+        "content": "tell me current date",
+        "timestamp": "2026-03-28T05:58:08.240Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "userLabel": "AI Runtime Bot",
+        "role": "assistant",
+        "content": "Today is **March 28, 2026**.",
+        "timestamp": "2026-03-28T05:58:10.292Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "userLabel": "prakharmaheshwari_7017",
+        "role": "user",
+        "content": "<@1487261551403601950> create task happy",
+        "timestamp": "2026-03-28T06:38:43.159Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "userLabel": "AI Runtime Bot",
+        "role": "assistant",
+        "content": "Done.",
+        "timestamp": "2026-03-28T06:38:48.483Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "userLabel": "prakharmaheshwari_7017",
+        "role": "user",
+        "content": "list all taks",
+        "timestamp": "2026-03-28T06:38:59.153Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "userLabel": "AI Runtime Bot",
+        "role": "assistant",
+        "content": "Here’s the current list of all tasks in the database:\n\n| Task | Status | Priority | Created |\n|---|---|---|---|\n| happy | Not started | Medium | 12:38 PM |\n| Review content 31 | Not started | High | 10:59 AM |\n| running | Done | Medium | 10:30 AM |\n| sleeping | Not started | Medium | 10:24 AM |\n| buying | Not started | Medium | 10:20 AM |\n| Shoping | Not started | Medium | 09:52 AM |\n| Driving | Not started | Medium | 09:52 AM |\n| Cooking | In progress | Low | 09:04 AM |\n| Reading Book | Done | High | 08:55 AM |",
+        "timestamp": "2026-03-28T06:39:03.361Z"
+      }
+    ],
+    "842467488465682464": [
+      {
+        "userId": "1452850184416661675",
+        "role": "user",
+        "content": "hi <@1487261551403601950>",
+        "timestamp": "2026-03-28T05:27:29.917Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "Hey there! 👋 How can I help you today?",
+        "timestamp": "2026-03-28T05:27:31.274Z"
+      },
+      {
+        "userId": "1452850184416661675",
+        "role": "user",
+        "content": "can you tell me what my username is",
+        "timestamp": "2026-03-28T05:27:38.287Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "I’m sorry, but I don’t have access to your Discord username.",
+        "timestamp": "2026-03-28T05:27:40.156Z"
+      },
+      {
+        "userId": "1452850184416661675",
+        "role": "user",
+        "content": "No worries, what's the day of the week today",
+        "timestamp": "2026-03-28T05:27:49.162Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "Today is Thursday.",
+        "timestamp": "2026-03-28T05:27:50.789Z"
+      },
+      {
+        "userId": "1452850184416661675",
+        "role": "user",
+        "content": "Hmm.. and what about the date and time in AEDT",
+        "timestamp": "2026-03-28T05:28:03.932Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "The current date and time in AEDT (Australian Eastern Daylight Time) is **4:28 PM on March 28, 2026**.",
+        "timestamp": "2026-03-28T05:28:08.242Z"
+      },
+      {
+        "userId": "1452850184416661675",
+        "role": "user",
+        "content": "Are you sure march 28 is a thursday",
+        "timestamp": "2026-03-28T05:28:23.813Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "I’m sorry for the mistake—March 28 2026 falls on a **Saturday**, not a Thursday.  \nThe current AEDT time is about **4:28 PM** on that Saturday. Let me know if you need anything else!",
+        "timestamp": "2026-03-28T05:28:29.168Z"
+      },
+      {
+        "userId": "1452850184416661675",
+        "role": "user",
+        "content": "could you summarize this conversation for me",
+        "timestamp": "2026-03-28T05:28:55.739Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "Sure! Here’s a quick recap of our chat:\n\n1. **Greeting & ID check** – You asked for your username; I explained I can’t see it.  \n2. **Date & time** – I gave the day of the week (initially Thursday, then corrected to Saturday) and the current AEDT time.  \n3. **Summary request** – You asked me to summarize the conversation, which I’m doing now.  \n\nLet me know if you need anything else!",
+        "timestamp": "2026-03-28T05:28:57.792Z"
+      },
+      {
+        "userId": "1452850184416661675",
+        "role": "user",
+        "content": "great, do you have access to the notion task board",
+        "timestamp": "2026-03-28T05:29:14.893Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "I can view the Notion task board and fetch the current tasks for you. Let me know if you’d like a summary or to modify any task.",
+        "timestamp": "2026-03-28T05:29:18.634Z"
+      },
+      {
+        "userId": "1452850184416661675",
+        "role": "user",
+        "content": "can you list all the tasks",
+        "timestamp": "2026-03-28T05:29:24.790Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "Here are all the current tasks in the Notion board:\n\n| Task ID | Title          | Status       | Priority |\n|---------|----------------|--------------|----------|\n| 3316b7e0‑3e4a‑81b2‑ae93‑fc151031093c | running        | Done         | Medium   |\n| 3316b7e0‑3e4a‑8197‑b89a‑e755c7dd18e2 | sleeping       | Not started  | Medium   |\n| 3316b7e0‑3e4a‑81c1‑8700‑f2739929eb63 | buying         | Not started  | Medium   |\n| 3316b7e0‑3e4a‑812f‑af3d‑e59b86598e87 | Shoping        | Not started  | Medium   |\n| 3316b7e0‑3e4a‑8181‑9408‑c85b02937528 | Driving        | Not started  | Medium   |\n| 3316b7e0‑3e4a‑81c2‑bcc8‑f7cf92209ac0 | Cooking        | In progress  | Low      |\n| 3316b7e0‑3e4a‑8143‑973b‑e6298641233f | Reading Book   | Done         | High     |\n\nLet me know if you’d like to add, update, or delete any of these tasks!",
+        "timestamp": "2026-03-28T05:29:27.319Z"
+      },
+      {
+        "userId": "1452850184416661675",
+        "role": "user",
+        "content": "Could you format them? And remove the task id",
+        "timestamp": "2026-03-28T05:29:38.465Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "Here’s the list formatted without the task IDs:\n\n| Title        | Status       | Priority |\n|--------------|--------------|----------|\n| running      | Done         | Medium   |\n| sleeping     | Not started  | Medium   |\n| buying       | Not started  | Medium   |\n| Shoping      | Not started  | Medium   |\n| Driving      | Not started  | Medium   |\n| Cooking      | In progress  | Low      |\n| Reading Book | Done         | High     |\n\nLet me know if you’d like any further tweaks!",
+        "timestamp": "2026-03-28T05:29:40.198Z"
+      },
+      {
+        "userId": "1452850184416661675",
+        "role": "user",
+        "content": "Could you add another task \"Review content 30\"",
+        "timestamp": "2026-03-28T05:29:50.722Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "✅ “Review content 30” has been added to the Notion board.  \nCurrent status: **Not started** | Priority: **Medium**  \n\nLet me know if you’d like to set a due date, assign someone, or update anything else!",
+        "timestamp": "2026-03-28T05:29:53.717Z"
+      },
+      {
+        "userId": "1452850184416661675",
+        "role": "user",
+        "content": "thanks! now can you fetch the new list",
+        "timestamp": "2026-03-28T05:30:07.386Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "Here’s the updated list of tasks:\n\n| Title            | Status       | Priority |\n|------------------|--------------|----------|\n| Review content 30 | Not started  | Medium   |\n| running          | Done         | Medium   |\n| sleeping         | Not started  | Medium   |\n| buying           | Not started  | Medium   |\n| Shoping          | Not started  | Medium   |\n| Driving          | Not started  | Medium   |\n| Cooking          | In progress  | Low      |\n| Reading Book     | Done         | High     |\n\nLet me know if you need anything else!",
+        "timestamp": "2026-03-28T05:30:12.985Z"
+      },
+      {
+        "userId": "1452850184416661675",
+        "role": "user",
+        "content": "can you change the priority of review content 30 to high",
+        "timestamp": "2026-03-28T05:31:02.791Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "✅ Updated “Review content 30” priority to **High**. Let me know if there’s anything else you’d like to adjust!",
+        "timestamp": "2026-03-28T05:31:06.169Z"
+      },
+      {
+        "userId": "1452850184416661675",
+        "role": "user",
+        "content": "oh and i misspoke its content 31* could you show me the new list after updating",
+        "timestamp": "2026-03-28T05:31:15.959Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "Here’s the updated list of tasks (no IDs shown):\n\n| Title           | Status       | Priority |\n|-----------------|--------------|----------|\n| Review content 31 | Not started  | High     |\n| running         | Done         | Medium   |\n| sleeping        | Not started  | Medium   |\n| buying          | Not started  | Medium   |\n| Shoping         | Not started  | Medium   |\n| Driving         | Not started  | Medium   |\n| Cooking         | In progress  | Low      |\n| Reading Book    | Done         | High     |\n\nLet me know if there’s anything else you’d like to adjust!",
+        "timestamp": "2026-03-28T05:31:19.825Z"
+      },
+      {
+        "userId": "1452850184416661675",
+        "role": "user",
+        "content": "amazing, can you do web searches",
+        "timestamp": "2026-03-28T05:31:27.561Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "Sure! What would you like me to search for?",
+        "timestamp": "2026-03-28T05:31:29.025Z"
+      },
+      {
+        "userId": "1452850184416661675",
+        "role": "user",
+        "content": "whats the current conversion from AUD -> USD",
+        "timestamp": "2026-03-28T05:31:38.744Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "The current mid‑market rate is about **0.695 USD per 1 AUD** (≈ 0.69 USD).  \nRates fluctuate, so check a live source (e.g., XE, Wise, or your bank) for the most up‑to‑date figure.",
+        "timestamp": "2026-03-28T05:31:43.980Z"
+      },
+      {
+        "userId": "1452850184416661675",
+        "role": "user",
+        "content": "what about the price of BTC",
+        "timestamp": "2026-03-28T05:32:00.901Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "I ran into a problem reaching the AI service. Please try again in a moment.",
+        "timestamp": "2026-03-28T05:32:06.552Z"
+      },
+      {
+        "userId": "1452850184416661675",
+        "role": "user",
+        "content": "No worries, could you try again",
+        "timestamp": "2026-03-28T05:32:18.076Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "I ran into a problem reaching the AI service. Please try again in a moment.",
+        "timestamp": "2026-03-28T05:32:23.645Z"
+      },
+      {
+        "userId": "1452850184416661675",
+        "role": "user",
+        "content": "<@842467131013988372> great work so far, what went wrong here?",
+        "timestamp": "2026-03-28T05:32:43.695Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "I tried to fetch the BTC price using the web‑search tool, but the request hit an internal error (the AI service was temporarily unavailable). The AUD‑USD query worked fine, so it looks like the problem was specific to that call. Just try the BTC request again in a moment, and it should return the current price.",
+        "timestamp": "2026-03-28T05:32:45.610Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "there is some limit for free models \nPlease retry in 55.278296237s. [{\"@type\":\"type.googleapis.com/google.rpc.Help\",\"links\":[{\"description\":\"Learn more about Gemini API quotas\",\"url\":\"https://ai.google.dev/gemini-api/docs/rate-limits\"}]},{\"@type\":\"type.googleapis.com/google.rpc.QuotaFailure\",\"violations\":[{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.5-flash\"},\"quotaValue\":\"20\"}]},{\"@type\":\"type.googleapis.com/google.rpc.RetryInfo\",\"retryDelay\":\"55s\"}]",
+        "timestamp": "2026-03-28T05:33:33.246Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "The current price of Bitcoin is **about $66,350 USD per BTC** (live price from Google’s featured answer).  \nPrices fluctuate constantly, so you may want to check a live feed (e.g., CoinMarketCap, Coinbase, or Binance) for the most up‑to‑date figure.",
+        "timestamp": "2026-03-28T05:33:38.325Z"
+      },
+      {
+        "userId": "1452850184416661675",
+        "role": "user",
+        "content": "ahh okay limits no worries",
+        "timestamp": "2026-03-28T05:34:07.773Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "Got it! If there’s anything else you’d like to do—whether it’s more Notion updates, another web search, or anything else—just let me know.",
+        "timestamp": "2026-03-28T05:34:09.320Z"
+      },
+      {
+        "userId": "1452850184416661675",
+        "role": "user",
+        "content": "can you tell me what people are in this chat",
+        "timestamp": "2026-03-28T05:34:17.700Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "The chat currently includes:\n\n- **You** (user 1452850184416661675)  \n- **@842467131013988372** (the other Discord user)  \n- **Me** (the assistant bot, user 1487261551403601950)  \n\nThose are the only participants shown in the transcript.",
+        "timestamp": "2026-03-28T05:34:19.204Z"
+      },
+      {
+        "userId": "1452850184416661675",
+        "role": "user",
+        "content": "can you also pull the timestamp of my last message",
+        "timestamp": "2026-03-28T05:34:41.028Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "Your last message was sent at **2026‑03‑28 T05:34:41.028 Z** (UTC).  \nIn Australian Eastern Daylight Time (AEDT, UTC + 11) that corresponds to **2026‑03‑28 16:34:41 AEDT**.",
+        "timestamp": "2026-03-28T05:34:43.140Z"
+      },
+      {
+        "userId": "1452850184416661675",
+        "role": "user",
+        "content": "<@842467131013988372> Could you work on giving it:\n- Access to usernames\n-  Only make it reply to messages when it's pinged (but still it gets the context of previous messages in the chat)\n- Only respond to queries and add things to the notion board if the user has a specific role",
+        "timestamp": "2026-03-28T05:35:46.149Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "I’m sorry, but I can’t alter the bot’s configuration or permissions.  \n- I don’t have access to Discord usernames, so I can’t fetch or display them.  \n- I’ll continue to reply to any message I receive, regardless of whether I’m pinged.  \n- I can only add or modify Notion tasks when you explicitly ask me to; I don’t have a built‑in way to check a user’s role before acting.\n\nIf you’d like to proceed with any Notion updates or other queries, just let me know and I’ll do my best to help!",
+        "timestamp": "2026-03-28T05:35:48.478Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "role": "user",
+        "content": "ok , will work on it",
+        "timestamp": "2026-03-28T05:36:40.815Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "Sounds good! Let me know if you need anything else.",
+        "timestamp": "2026-03-28T05:36:42.316Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "userLabel": "prakharmaheshwari_7017",
+        "role": "user",
+        "content": "tell me current time",
+        "timestamp": "2026-03-28T05:54:47.257Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "userLabel": "prakharmaheshwari_7017",
+        "role": "user",
+        "content": "can you tell currnt time",
+        "timestamp": "2026-03-28T05:59:07.108Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "userLabel": "AI Runtime Bot",
+        "role": "assistant",
+        "content": "I ran into a problem reaching the AI service. Please try again in a moment.",
+        "timestamp": "2026-03-28T05:59:13.158Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "userLabel": "prakharmaheshwari_7017",
+        "role": "user",
+        "content": "tell me current time",
+        "timestamp": "2026-03-28T06:02:01.343Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "userLabel": "AI Runtime Bot",
+        "role": "assistant",
+        "content": "Sure! The current time is:\n\n- **UTC:** 2026‑03‑28 T06:02:01 Z  \n- **AEDT (UTC + 11):** 2026‑03‑28 17:02:01 AEDT  \n\nLet me know if you need it in another timezone.",
+        "timestamp": "2026-03-28T06:02:03.893Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "userLabel": "prakharmaheshwari_7017",
+        "role": "user",
+        "content": "what is last username",
+        "timestamp": "2026-03-28T06:02:33.861Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "userLabel": "prakharmaheshwari_7017",
+        "role": "user",
+        "content": "usernames of people in chat",
+        "timestamp": "2026-03-28T06:02:56.080Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "userLabel": "AI Runtime Bot",
+        "role": "assistant",
+        "content": "I’m sorry, but I don’t have access to Discord usernames.  \nThe participants in this chat are:\n\n- **User 1452850184416661675** (the other user in the conversation)  \n- **User 842467131013988372** (you, “prakharmaheshwari_7017”)  \n- **Me** (the assistant bot, user 1487261551403601950)  \n\nIf you need any other information, just let me know!",
+        "timestamp": "2026-03-28T06:02:58.153Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "userLabel": "prakharmaheshwari_7017",
+        "role": "user",
+        "content": "remove ids",
+        "timestamp": "2026-03-28T06:03:14.728Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "userLabel": "prakharmaheshwari_7017",
+        "role": "user",
+        "content": "remove ids",
+        "timestamp": "2026-03-28T06:03:21.645Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "userLabel": "AI Runtime Bot",
+        "role": "assistant",
+        "content": "I ran into a problem reaching the AI service. Please try again in a moment.",
+        "timestamp": "2026-03-28T06:03:25.275Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "userLabel": "prakharmaheshwari_7017",
+        "role": "user",
+        "content": "please remove ids",
+        "timestamp": "2026-03-28T06:08:23.297Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "userLabel": "prakharmaheshwari_7017",
+        "role": "user",
+        "content": "please remove ids",
+        "timestamp": "2026-03-28T06:08:38.883Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "userLabel": "AI Runtime Bot",
+        "role": "assistant",
+        "content": "I ran into a problem reaching the AI service. Please try again in a moment.",
+        "timestamp": "2026-03-28T06:08:44.172Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "userLabel": "prakharmaheshwari_7017",
+        "role": "user",
+        "content": "remove ids",
+        "timestamp": "2026-03-28T06:11:03.899Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "userLabel": "AI Runtime Bot",
+        "role": "assistant",
+        "content": "I ran into a problem reaching the AI service. Please try again in a moment.",
+        "timestamp": "2026-03-28T06:11:08.852Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "userLabel": "prakharmaheshwari_7017",
+        "role": "user",
+        "content": "current time",
+        "timestamp": "2026-03-28T06:14:20.002Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "userLabel": "AI Runtime Bot",
+        "role": "assistant",
+        "content": "Sure! The current time is:\n\n- **UTC:** 2026‑03‑28 T06:14:20 Z  \n- **AEDT (UTC + 11):** 2026‑03‑28 17:14:20 AEDT  \n\nLet me know if you need it in another timezone.",
+        "timestamp": "2026-03-28T06:14:22.689Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "userLabel": "prakharmaheshwari_7017",
+        "role": "user",
+        "content": "usernames of people in chat",
+        "timestamp": "2026-03-28T06:14:44.069Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "userLabel": "prakharmaheshwari_7017",
+        "role": "user",
+        "content": "usernames of people in chat",
+        "timestamp": "2026-03-28T06:14:54.578Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "userLabel": "AI Runtime Bot",
+        "role": "assistant",
+        "content": "I’m sorry, but I don’t have access to Discord usernames.  \nThe participants in this chat are:\n\n- **User 1452850184416661675** (the other user in the conversation)  \n- **User 842467131013988372** (you, “prakharmaheshwari_7017”)  \n- **Me** (the assistant bot, user 1487261551403601950)\n\nIf you need any other information, just let me know!",
+        "timestamp": "2026-03-28T06:14:56.919Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "userLabel": "prakharmaheshwari_7017",
+        "role": "user",
+        "content": "remove ids",
+        "timestamp": "2026-03-28T06:15:06.323Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "userLabel": "prakharmaheshwari_7017",
+        "role": "user",
+        "content": "remove ids",
+        "timestamp": "2026-03-28T06:15:16.378Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "userLabel": "AI Runtime Bot",
+        "role": "assistant",
+        "content": "I ran into a problem reaching the AI service. Please try again in a moment.",
+        "timestamp": "2026-03-28T06:15:19.889Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "userLabel": "prakharmaheshwari_7017",
+        "role": "user",
+        "content": "remove ids",
+        "timestamp": "2026-03-28T06:16:33.938Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "userLabel": "AI Runtime Bot",
+        "role": "assistant",
+        "content": "| Title            | Status       | Priority |\n|------------------|--------------|----------|\n| Review content 31 | Not started  | High     |\n| running          | Done         | Medium   |\n| sleeping         | Not started  | Medium   |\n| buying           | Not started  | Medium   |\n| Shoping          | Not started  | Medium   |\n| Driving          | Not started  | Medium   |\n| Cooking          | In progress  | Low      |\n| Reading Book     | Done         | High     |\n\nLet me know if there’s anything else you’d like to adjust!",
+        "timestamp": "2026-03-28T06:16:40.380Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "userLabel": "prakharmaheshwari_7017",
+        "role": "user",
+        "content": "tell me the usernames of people without ids",
+        "timestamp": "2026-03-28T06:17:16.331Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "userLabel": "prakharmaheshwari_7017",
+        "role": "user",
+        "content": "tell me the usernames of people without ids",
+        "timestamp": "2026-03-28T06:17:24.447Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "userLabel": "AI Runtime Bot",
+        "role": "assistant",
+        "content": "I’m sorry, but I don’t have access to Discord usernames. I can only reference participants by their user IDs. If you need any other information, just let me know!",
+        "timestamp": "2026-03-28T06:17:26.192Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "userLabel": "prakharmaheshwari_7017",
+        "role": "user",
+        "content": "tell me the usernames of people without ids",
+        "timestamp": "2026-03-28T06:24:10.891Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "userLabel": "AI Runtime Bot",
+        "role": "assistant",
+        "content": "The participants in this chat are:\n\n- **prakharmaheshwari_7017** (userId 842467131013988372)  \n- **userId 1452850184416661675** (no display name recorded)",
+        "timestamp": "2026-03-28T06:24:13.897Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "userLabel": "prakharmaheshwari_7017",
+        "role": "user",
+        "content": "create task happy",
+        "timestamp": "2026-03-28T06:34:40.326Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "userLabel": "prakharmaheshwari_7017",
+        "role": "user",
+        "content": "can you tell current time",
+        "timestamp": "2026-03-28T06:35:01.709Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "userLabel": "prakharmaheshwari_7017",
+        "role": "user",
+        "content": "current time please",
+        "timestamp": "2026-03-28T06:35:36.696Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "userLabel": "prakharmaheshwari_7017",
+        "role": "user",
+        "content": "can you list all taks",
+        "timestamp": "2026-03-28T06:40:08.746Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "userLabel": "prakharmaheshwari_7017",
+        "role": "user",
+        "content": "can you list all tasks",
+        "timestamp": "2026-03-28T06:40:18.820Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "userLabel": "AI Runtime Bot",
+        "role": "assistant",
+        "content": "Here are all the current tasks in the Notion board:\n\n| Title            | Status       | Priority |\n|------------------|--------------|----------|\n| happy            | Not started  | Medium   |\n| Review content 31 | Not started  | High     |\n| running          | Done         | Medium   |\n| sleeping         | Not started  | Medium   |\n| buying           | Not started  | Medium   |\n| Shoping          | Not started  | Medium   |\n| Driving          | Not started  | Medium   |\n| Cooking          | In progress  | Low      |\n| Reading Book     | Done         | High     |\n\nLet me know if you’d like to add, update, or delete any of these tasks!",
+        "timestamp": "2026-03-28T06:40:25.208Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "userLabel": "prakharmaheshwari_7017",
+        "role": "user",
+        "content": "can you list all tasks",
+        "timestamp": "2026-03-28T06:41:13.991Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "userLabel": "prakharmaheshwari_7017",
+        "role": "user",
+        "content": "can you tell me all usernames",
+        "timestamp": "2026-03-28T06:42:11.582Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "userLabel": "prakharmaheshwari_7017",
+        "role": "user",
+        "content": "can you tell me all usernames",
+        "timestamp": "2026-03-28T06:42:21.829Z"
+      },
+      {
+        "userId": "842467131013988372",
+        "userLabel": "prakharmaheshwari_7017",
+        "role": "user",
+        "content": "can you tell me all usernames of people in chat",
+        "timestamp": "2026-03-28T06:43:25.684Z"
+      },
+      {
+        "userId": "1487261551403601950",
+        "role": "assistant",
+        "content": "The participants in this chat are:\n\n- **prakharmaheshwari_7017** (userId 842467131013988372)  \n- **userId 1452850184416661675** (no display name recorded)  \n- **AI Runtime Bot** (userId 1487261551403601950)",
+        "timestamp": "2026-03-28T06:43:28.562Z",
+        "userLabel": "AI Runtime Bot"
+      }
+    ]
+  }
+}
