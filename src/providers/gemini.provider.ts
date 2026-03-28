@@ -326,7 +326,9 @@ export class GeminiProvider implements LLMProvider {
         throw new Error('Gemini returned no candidates');
       }
 
-      return parsePartsToLLMResponse(cands[0].content?.parts);
+      const out = parsePartsToLLMResponse(cands[0].content?.parts);
+      console.log(`[llm] completion provider=gemini model=${modelName}`);
+      return out;
     } catch (err) {
       throw new Error(`Gemini: ${normalizeGeminiError(err)}`);
     }

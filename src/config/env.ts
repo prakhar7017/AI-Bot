@@ -27,6 +27,16 @@ function optionalInt(name: string, fallback: number): number {
   return Number.isFinite(n) && n > 0 ? n : fallback;
 }
 
+/** Comma- or whitespace-separated Discord role IDs. */
+function optionalDiscordRoleIds(name: string): string[] {
+  const raw = process.env[name]?.trim();
+  if (!raw) return [];
+  return raw
+    .split(/[\s,]+/)
+    .map((s) => s.trim())
+    .filter((s) => s.length > 0);
+}
+
 export const env = {
   /** Primary backend: gemini | groq | openai */
   llmProvider: optionalEnv('LLM_PROVIDER', 'gemini'),
@@ -44,6 +54,11 @@ export const env = {
   notionApiKey: requireEnv('NOTION_API_KEY'),
   notionDatabaseId: requireEnv('NOTION_DATABASE_ID'),
   discordBotToken: requireEnv('DISCORD_BOT_TOKEN'),
+  /**
+   * If non-empty, only members with at least one of these guild role IDs may invoke the agent
+   * (Notion + replies). DMs are still allowed unless you remove bot DM access in the portal.
+   */
+  discordAgentRoleIds: optionalDiscordRoleIds('DISCORD_AGENT_ROLE_IDS'),
   /** Tavily API key */
   searchApiKey: requireEnv('SEARCH_API_KEY'),
 

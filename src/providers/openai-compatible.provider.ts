@@ -172,7 +172,9 @@ export class OpenAICompatibleProvider implements LLMProvider {
         throw new Error(`HTTP ${res.status}: ${msg}`);
       }
 
-      return parseOpenAICompletion(res.data);
+      const out = parseOpenAICompletion(res.data);
+      console.log(`[llm] completion provider=${this.id} model=${model}`);
+      return out;
     } catch (err) {
       throw normalizeAxiosLLMError(err, label);
     }

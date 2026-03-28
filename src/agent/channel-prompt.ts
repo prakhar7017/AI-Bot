@@ -17,7 +17,7 @@ export async function buildChannelLlmUserContent(
   const taskBlock = notionService.formatTasksForLlmContext(tasks);
 
   return `## Channel conversation (multi-user)
-Each line is one message in this Discord channel/DM. \`userId\` is the Discord snowflake of the author. The transcript is chronological (oldest first, newest last). Assistant lines use the bot's user id.
+Each line is one Discord message. \`userId\` = author's snowflake. \`name="..."\` = nickname or display name **as stored by this bot when the message arrived** (authoritative for this channel). Chronological: oldest first, newest last.
 
 ${history || '(no messages in rolling window yet)'}
 
@@ -25,5 +25,9 @@ ${history || '(no messages in rolling window yet)'}
 ${taskBlock}
 
 ## Your job
-Respond to the **latest user message** at the **bottom** of the transcript. Use earlier lines from **other userIds** as shared context: resolve "that task", pronouns, and follow-up questions cooperatively. When tasks are ambiguous, prefer get_tasks or cite task_id from the snapshot.`;
+Respond to the **latest user message** at the **bottom** of the transcript.
+
+If the latest message asks for **who said something**, **usernames**, **display names**, or to list **people without repeating numeric IDs**, answer using \`name="..."\` from the transcript. Only omit names for lines that have no \`name=\` field (then you may mention userId). Do not refuse or apologize for lacking Discord access—the names in the log are exactly what you may quote.
+
+Otherwise use earlier lines from other users as shared context for tasks, pronouns, and follow-ups. When tasks are ambiguous, prefer get_tasks or cite task_id from the snapshot.`;
 }

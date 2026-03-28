@@ -4,6 +4,8 @@ import { dirname } from 'path';
 /** One stored line of channel conversation (multi-user). */
 export interface MemoryEntry {
   userId: string;
+  /** Discord display name / global name for LLM context (optional for legacy rows). */
+  userLabel?: string;
   role: 'user' | 'assistant';
   content: string;
   /** ISO-8601 timestamp */
@@ -51,12 +53,19 @@ function normalizeFile(raw: unknown): MemoryFileV2 {
     for (const [channelId, list] of Object.entries(o.channels as Record<string, MemoryEntry[]>)) {
       if (!Array.isArray(list)) continue;
       channels[channelId] = trimChannel(
-        list.map((e) => ({
-          userId: String(e.userId ?? ''),
-          role: e.role === 'assistant' ? 'assistant' : 'user',
-          content: String(e.content ?? ''),
-          timestamp: String(e.timestamp ?? new Date().toISOString()),
-        }))
+        list.map((e) => {
+          const ex = e as MemoryEntry & { userLabel?: unknown };
+          const labelRaw = ex.userLabel;
+          return {
+            userId: String(e.userId ?? ''),
+            ...(typeof labelRaw === 'string' && labelRaw.trim()
+              ? { userLabel: labelRaw.trim() }
+              : {}),
+            role: e.role === 'assistant' ? 'assistant' : 'user',
+            content: String(e.content ?? ''),
+            timestamp: String(e.timestamp ?? new Date().toISOString()),
+          };
+        })
       );
     }
     return { version: 2, channels };
@@ -99,12 +108,15 @@ async function saveMemoryFile(filePath: string, data: MemoryFileV2): Promise<voi
 export async function addMessage(filePath: string, channelId: string, entry: MemoryEntry): Promise<void> {
   const data = await loadMemoryFile(filePath);
   const list = data.channels[channelId] ?? [];
-  list.push({
+  const row: MemoryEntry = {
     userId: entry.userId,
     role: entry.role,
     content: entry.content.slice(0, 8000),
     timestamp: entry.timestamp || new Date().toISOString(),
-  });
+  };
+  const lab = entry.userLabel?.trim();
+  if (lab) row.userLabel = lab.slice(0, 200);
+  list.push(row);
   data.channels[channelId] = trimChannel(list);
   await saveMemoryFile(filePath, data);
 }
@@ -125,7 +137,8 @@ export async function getChannelSnippet(
   return slice
     .map((e) => {
       const roleTag = e.role === 'assistant' ? 'assistant' : 'user';
-      return `[${e.timestamp}] ${roleTag} userId=${e.userId}: ${e.content}`;
+      const namePart = e.userLabel ? ` name="${e.userLabel.replace(/"/g, "'")}"` : '';
+      return `[${e.timestamp}] ${roleTag} userId=${e.userId}${namePart}: ${e.content}`;
     })
     .join('\n');
 }
