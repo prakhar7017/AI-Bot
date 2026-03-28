@@ -5,6 +5,66 @@ import type { QueryDatabaseResponse } from '@notionhq/client/build/src/api-endpo
 const TITLE_PROP = 'Title';
 const STATUS_PROP = 'Status';
 const PRIORITY_PROP = 'Priority';
+/** Notion "Created time" column (created_time property); fallback to page root `created_time`. */
+const CREATED_TIME_PROP = 'Created time';
+
+/** Indian Standard Time (UTC+5:30) for task timestamps in LLM prompts. */
+const INDIAN_TIME_ZONE = 'Asia/Kolkata';
+
+/**
+ * Format Notion ISO timestamp for prompts, e.g. "March 28, 2026 10:17 AM IST".
+ * Always interpreted in **Asia/Kolkata** regardless of server location.
+ */
+export function formatCreatedTimeForPrompt(iso: string): string {
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return iso;
+
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: INDIAN_TIME_ZONE,
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true,
+  }).formatToParts(d);
+
+  const byType: Partial<Record<Intl.DateTimeFormatPartTypes, string>> = {};
+  for (const p of parts) {
+    if (p.type !== 'literal') {
+      byType[p.type] = p.value;
+    }
+  }
+
+  const month = byType.month ?? '';
+  const day = byType.day ?? '';
+  const year = byType.year ?? '';
+  const hour = byType.hour ?? '';
+  const minute = byType.minute ?? '';
+  const period = (byType.dayPeriod ?? '').toUpperCase();
+
+  return `${month} ${day}, ${year} ${hour}:${minute} ${period} IST`;
+}
+
+function getCreatedTimeIsoFromPage(page: DatabasePage): string | null {
+  if (page && typeof page === 'object' && 'created_time' in page) {
+    const t = (page as { created_time?: string }).created_time;
+    if (typeof t === 'string' && t.length > 0) return t;
+  }
+  const props = 'properties' in page ? page.properties : {};
+  const prop = props[CREATED_TIME_PROP];
+  if (
+    prop &&
+    typeof prop === 'object' &&
+    'type' in prop &&
+    (prop as { type: string }).type === 'created_time' &&
+    'created_time' in prop
+  ) {
+    const ct = (prop as { created_time?: string }).created_time;
+    if (typeof ct === 'string' && ct.length > 0) return ct;
+  }
+  return null;
+}
 
 type DatabasePage = QueryDatabaseResponse['results'][number];
 type DbProperties = Awaited<ReturnType<Client['databases']['retrieve']>>['properties'];
@@ -135,6 +195,8 @@ export interface NotionTask {
   title: string;
   status: string | null;
   priority: string | null;
+  /** ISO-8601 from Notion (page or Created time column) */
+  createdTime: string | null;
 }
 
 export function createNotionClient(token: string): Client {
@@ -189,11 +251,13 @@ export async function createTask(
     properties,
   } as Parameters<Client['pages']['create']>[0]);
 
+  const created = getCreatedTimeIsoFromPage(page as DatabasePage);
   return {
     id: page.id,
     title,
     status: appliedStatus,
     priority: appliedPriority,
+    createdTime: created,
   };
 }
 
@@ -203,12 +267,39 @@ export async function getTasks(client: Client, databaseId: string): Promise<Noti
     page_size: 100,
   });
 
-  return res.results.map((p) => ({
+  const tasks = res.results.map((p) => ({
     id: p.id,
     title: getTitleFromPage(p),
     status: getStatusFromPage(p),
     priority: getPriorityFromPage(p),
+    createdTime: getCreatedTimeIsoFromPage(p),
   }));
+  tasks.sort((a, b) => {
+    const ta = a.createdTime ? new Date(a.createdTime).getTime() : 0;
+    const tb = b.createdTime ? new Date(b.createdTime).getTime() : 0;
+    return tb - ta;
+  });
+  return tasks;
+}
+
+/**
+ * Compact snapshot for system prompt context (no assignee until a People column is added to the schema).
+ */
+export function formatTasksForLlmContext(tasks: NotionTask[], maxLines = 45): string {
+  if (!tasks.length) {
+    return '(no tasks in database)';
+  }
+  const lines = tasks.slice(0, maxLines).map((t) => {
+    const st = t.status ?? '—';
+    const pr = t.priority ?? '—';
+    const created =
+      t.createdTime && t.createdTime.length > 0
+        ? formatCreatedTimeForPrompt(t.createdTime)
+        : '—';
+    return `- task_id=${t.id} | title="${t.title}" | created="${created}" | status=${st} | priority=${pr} | assignee=(not tracked; add People column if needed)`;
+  });
+  const extra = tasks.length > maxLines ? `\n… and ${tasks.length - maxLines} more (call get_tasks).` : '';
+  return lines.join('\n') + extra;
 }
 
 /**

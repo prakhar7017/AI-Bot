@@ -3,7 +3,7 @@ import { getLLMProvider } from '../factory/llm.factory';
 import { llmResponseToAssistantMessage } from '../providers/llm-response.adapter';
 import { notionToolDefinitions, executeNotionTool, type NotionToolsContext } from '../tools/notion.tools';
 import { searchToolDefinitions, executeSearchTool } from '../tools/search.tools';
-import { appendMemory, loadMemory, memoryToChatSnippets } from '../services/memory.service';
+import { buildChannelLlmUserContent } from './channel-prompt';
 
 const SYSTEM_PROMPT = `You are an AI Runtime Agent that can perform real-world actions using tools.
 
@@ -12,6 +12,8 @@ Your responsibilities:
 * Manage tasks in Notion
 * Perform web searches
 * Assist users via Discord
+
+You often see **multiple Discord users** in the same channel transcript (each line has a userId). Use that shared context to interpret follow-ups, "that task", and pronouns across users.
 
 Rules:
 
@@ -95,21 +97,20 @@ async function executeToolCall(
 
 /**
  * Run the agent loop: model → tool execution → model until text reply or max steps.
+ * Expects the **user** line already appended to per-channel memory by the Discord handler.
  */
-export async function runAgent(userId: string, userText: string, deps: AgentDeps): Promise<string> {
-  const mem = await loadMemory(deps.memoryPath);
-  const historySnippet = memoryToChatSnippets(mem.entries, userId, 10);
-  const augmentedUser =
-    historySnippet.length > 0
-      ? `Conversation memory (same user, recent):\n${historySnippet}\n\nCurrent message:\n${userText}`
-      : userText;
+export async function runAgent(
+  channelId: string,
+  _authorUserId: string,
+  _userText: string,
+  deps: AgentDeps
+): Promise<string> {
+  const augmentedUser = await buildChannelLlmUserContent(deps.memoryPath, channelId, deps.notionCtx);
 
   const messages: ChatMessage[] = [
     { role: 'system', content: SYSTEM_PROMPT },
     { role: 'user', content: augmentedUser },
   ];
-
-  await appendMemory(deps.memoryPath, userId, 'user', userText);
 
   const llm = getLLMProvider();
 
@@ -128,9 +129,7 @@ export async function runAgent(userId: string, userText: string, deps: AgentDeps
     } catch (e) {
       lastError = e instanceof Error ? e.message : String(e);
       console.error('[agent] LLM error:', lastError);
-      const safe = 'I ran into a problem reaching the AI service. Please try again in a moment.';
-      await appendMemory(deps.memoryPath, userId, 'assistant', safe);
-      return safe;
+      return 'I ran into a problem reaching the AI service. Please try again in a moment.';
     }
 
     messages.push({
@@ -142,7 +141,6 @@ export async function runAgent(userId: string, userText: string, deps: AgentDeps
     if (!hasToolCalls(assistantMsg)) {
       const out = assistantText(assistantMsg);
       const finalText = out || 'Done.';
-      await appendMemory(deps.memoryPath, userId, 'assistant', finalText);
       return finalText;
     }
 
@@ -164,7 +162,6 @@ export async function runAgent(userId: string, userText: string, deps: AgentDeps
   const fallback =
     lastError ??
     'I took too many steps handling tools. Please narrow the request or try again.';
-  await appendMemory(deps.memoryPath, userId, 'assistant', fallback);
   return fallback;
 }
 

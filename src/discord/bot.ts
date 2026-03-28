@@ -8,6 +8,7 @@ import {
 import { env } from '../config/env';
 import { runAgent } from '../agent/agent';
 import { createNotionClient } from '../services/notion.service';
+import { addMessage } from '../services/memory.service';
 import type { NotionToolsContext } from '../tools/notion.tools';
 import { createRateLimiter } from '../services/rate-limit.service';
 
@@ -48,6 +49,8 @@ export async function startDiscordBot(): Promise<void> {
     databaseId: env.notionDatabaseId,
   };
 
+  const memoryPath = env.memoryPath;
+
   const client = new Client({
     intents: [
       GatewayIntentBits.Guilds,
@@ -70,22 +73,46 @@ export async function startDiscordBot(): Promise<void> {
       if (text == null) return;
 
       const userKey = message.author.id;
-      console.log('[discord] Incoming', { user: userKey, channel: message.channelId, preview: text.slice(0, 120) });
+      const channelId = message.channelId;
+
+      console.log('[discord] Incoming', { user: userKey, channel: channelId, preview: text.slice(0, 120) });
 
       if (!limiter.allow(userKey)) {
         await message.reply('You are sending too many messages. Please wait a bit and try again.');
         return;
       }
 
+      const now = new Date().toISOString();
+      await addMessage(memoryPath, channelId, {
+        userId: userKey,
+        role: 'user',
+        content: text,
+        timestamp: now,
+      });
+
       const sendable = asSendableChannel(message.channel);
       if (sendable) {
         await sendable.sendTyping();
       }
 
-      const reply = await runAgent(userKey, text, {
-        notionCtx,
-        searchApiKey: env.searchApiKey,
-        memoryPath: env.memoryPath,
+      const botUserId = message.client.user?.id ?? 'assistant';
+      let reply: string;
+      try {
+        reply = await runAgent(channelId, userKey, text, {
+          notionCtx,
+          searchApiKey: env.searchApiKey,
+          memoryPath,
+        });
+      } catch (err) {
+        console.error('[discord] runAgent error:', err);
+        reply = 'Something went wrong running the assistant.';
+      }
+
+      await addMessage(memoryPath, channelId, {
+        userId: botUserId,
+        role: 'assistant',
+        content: reply,
+        timestamp: new Date().toISOString(),
       });
 
       const chunkSize = 1900;
